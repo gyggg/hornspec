@@ -65,6 +65,7 @@ int main (int argc, char ** argv)
         "  hornspec [--help]                 show help\n" <<
         "  hornspec [options] <CHC.smt2>     discover invariants/specifications for a CHC system\n\n" <<
         "Options:\n" <<
+        "  --verbose                         enable verbose mode"
 //        "  --stren <NUM>                   number of strengthening iterations (by default, 1)          \n" <<
 //        "  --cex <NUM>                     search for counterexamples of given length                  \n" <<
         "  --skip-maximal                    return after the first iteration (i.e., could be non-maximal) \n" <<
@@ -84,6 +85,7 @@ int main (int argc, char ** argv)
   bool maximal = !getBoolValue("--skip-maximal", false, argc, argv);
   vector<string> relsOrder = getCommaSepStrValues("--rel-order", vector<string>(), argc, argv);
   bool noGAS = getBoolValue("--use-smt-model", false, argc, argv);
+  bool debug = getBoolValue("--verbose", false, argc, argv);
   string syguspath = getStrValue("--sygus", "", argc, argv);
   bool usesygus = syguspath != "";
   bool useUC = getBoolValue("--useuc", false, argc, argv);
@@ -113,6 +115,6 @@ int main (int argc, char ** argv)
     }
   }
 
-  solveNonlin(string(argv[argc-1]), cex, str, maximal, relsOrder, !noGAS, usesygus, useUC, newenc, fixcrel, syguspath);
+  solveNonlin(string(argv[argc-1]), cex, str, maximal, relsOrder, !noGAS, usesygus, useUC, newenc, fixcrel, syguspath, debug);
   return 0;
 }

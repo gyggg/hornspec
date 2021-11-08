@@ -59,6 +59,8 @@ namespace ufo
 
     NonlinCHCsolver (CHCs& r, int _b) : m_efac(r.m_efac), ruleManager(r), u(m_efac), strenBound(_b), SYGUS_BIN("") {}
 
+    NonlinCHCsolver (CHCs& r, int _b, bool debug) : debug(debug), m_efac(r.m_efac), ruleManager(r), u(m_efac), strenBound(_b), SYGUS_BIN("") {}
+
     bool checkAllOver (bool checkQuery = false)
     {
       for (auto & hr : ruleManager.chcs)
@@ -2415,13 +2417,13 @@ namespace ufo
     }
   };
 
-  inline void solveNonlin(string smt, int inv, int stren, bool maximal, const vector<string> & relsOrder, bool useGAS, bool usesygus, bool useUC, bool newenc, bool fixCRels, string syguspath)
+  inline void solveNonlin(string smt, int inv, int stren, bool maximal, const vector<string> & relsOrder, bool useGAS, bool usesygus, bool useUC, bool newenc, bool fixCRels, string syguspath, bool debug)
   {
     ExprFactory m_efac;
     EZ3 z3(m_efac);
     CHCs ruleManager(m_efac, z3);
     ruleManager.parse(smt);
-    NonlinCHCsolver nonlin(ruleManager, stren);
+    NonlinCHCsolver nonlin(ruleManager, stren, debug);
 
     if (usesygus) {
       nonlin.setSygusPath(syguspath);

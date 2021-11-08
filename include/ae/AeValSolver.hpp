@@ -52,7 +52,7 @@ namespace ufo
     u(efac),
     fresh_var_ind(0),
     partitioning_size(0),
-    debug(0)
+    debug(1)
     {
       filter (boolop::land(s,t), bind::IsConst (), back_inserter (stVars));
       getConj(t, tConjs);
