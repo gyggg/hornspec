@@ -65,7 +65,7 @@ int main (int argc, char ** argv)
         "  hornspec [--help]                 show help\n" <<
         "  hornspec [options] <CHC.smt2>     discover invariants/specifications for a CHC system\n\n" <<
         "Options:\n" <<
-        "  --verbose                         enable verbose mode"
+        "  --verbose                         enable verbose mode\n"
 //        "  --stren <NUM>                   number of strengthening iterations (by default, 1)          \n" <<
 //        "  --cex <NUM>                     search for counterexamples of given length                  \n" <<
         "  --skip-maximal                    return after the first iteration (i.e., could be non-maximal) \n" <<
